@@ -2,8 +2,6 @@
 
 # Secret Version
 
-**The functionality of this module requires Terraform 0.14 or newer**
-
 Creates a secret version in an existing secret in Secrets Manager. Note that the top level `secrets-manager` module calls this submodule to populate secrets.
 
 ### Populating the secret

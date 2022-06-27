@@ -1,7 +1,5 @@
 # Secret in Secrets Manager
 
-**The functionality of this module requires Terraform 0.14 or newer**
-
 Creates a secret in Secrets Manager that can be retrieved later.
 
 Please note that this module does **NOT** provide functionality to automatically rotate secrets at this time. You will need to set up rotation separately.
