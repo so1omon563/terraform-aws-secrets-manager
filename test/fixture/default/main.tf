@@ -2,9 +2,9 @@ variable "name" {}
 
 variable "tags" {}
 
-variable "topic_prefix" {}
+variable "secret_name" {}
 
-variable "topic_name_override" {}
+variable "secret_string" {}
 
 provider "aws" {
   default_tags {
@@ -12,34 +12,12 @@ provider "aws" {
   }
 }
 
-module "sns" {
+module "secret" {
   source = "../../../"
 
   name = var.name
-  tags = {
-    example = "true"
-  }
+  #tfsec:ignore:GEN003 The variable is marked as "sensitive" in the module, so it won't be output. Will still be in state file, which should be encrypted / access limited if stored in S3.
+  secret_name   = "mysecret"
+  secret_string = "test secret"
 }
-output "sns" { value = module.sns }
-
-module "sns-prefix" {
-  source = "../../../"
-
-  name         = var.name
-  topic_prefix = var.topic_prefix
-  tags = {
-    example = "true"
-  }
-}
-output "sns-prefix" { value = module.sns-prefix }
-
-module "sns-override" {
-  source = "../../../"
-
-  name                = var.name
-  topic_name_override = var.topic_name_override
-  tags = {
-    example = "true"
-  }
-}
-output "sns-override" { value = module.sns-override }
+output "secret" { value = module.secret }

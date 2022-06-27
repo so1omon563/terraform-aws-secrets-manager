@@ -1,8 +1,6 @@
-name = "kitchen-default-example"
-
-topic_prefix        = "prefix-example"
-topic_name_override = "kitchen-override-example"
-
+name          = "kitchen-default-example"
+secret_name   = "mysecret"
+secret_string = "test secret"
 tags = {
   environment = "dev"
   terraform   = "true"
