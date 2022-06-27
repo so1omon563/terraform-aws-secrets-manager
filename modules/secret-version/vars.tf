@@ -1,58 +1,8 @@
 # A dedicated place for variables means they will always be able to be easily found.
 
-variable "name" {
+variable "secret_id" {
   type        = string
-  description = "Short, descriptive name of the environment. All resources will be named using this value as a prefix."
-}
-
-variable "secret_name" {
-  type        = string
-  description = "Will be appended to the `name` variable to create the name of the secret. If not provided, the secret will be named with only the `name` variable."
-  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
-  # The default can be overridden by passing in a new value.
-  # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
-  default = null
-}
-
-variable "description" {
-  description = "Description of the secret. If not provided, a default value based on `name` and `secret_name` values will be used."
-  type        = string
-  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
-  # The default can be overridden by passing in a new value.
-  # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
-  default = null
-}
-
-variable "kms_arn" {
-  description = "ARN of the KMS key to encrypt the secret with."
-  type        = string
-  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
-  # The default can be overridden by passing in a new value.
-  # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
-  default = null
-}
-
-variable "policy" {
-  description = "Optional JSON resource policy to attach to the secret. Suggest using Terraform to generate this policy using the `aws_iam_policy_document` resource."
-  type        = string
-  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
-  # The default can be overridden by passing in a new value.
-  # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
-  default = null
-}
-
-variable "recovery_window_in_days" {
-  description = "Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days."
-  type        = string
-  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
-  # The default can be overridden by passing in a new value.
-  default = 30
-}
-
-variable "tags" {
-  type        = map(string)
-  description = "A map of tag names and values for tags to apply to all taggable resources created by the module. Default value is a blank map to allow for using Default Tags in the provider."
-  default     = {}
+  description = "Specifies the secret to which you want to add a new version. You can specify either the Amazon Resource Name (ARN) or the friendly name of the secret. The secret must already exist."
 }
 
 variable "secret_string" {

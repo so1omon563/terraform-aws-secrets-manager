@@ -1,8 +1,7 @@
-# SNS Topic
-Basic quickstart for creating a SNS Topic resource.
+# Secret
+Basic quickstart for creating a Secret resource.
 
 Example shows using Default Tags in the provider as well as passing additional tags into the resource.
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -16,7 +15,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sns_topic"></a> [sns\_topic](#module\_sns\_topic) | so1omon563/sns/aws | 0.1.0 |
+| <a name="module_secret"></a> [secret](#module\_secret) | so1omon563/secrets-manager/aws | 0.1.0 |
 
 ## Resources
 
@@ -28,5 +27,7 @@ No inputs.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_secret"></a> [secret](#output\_secret) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

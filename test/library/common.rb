@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'json'
 require 'pathname'
 
@@ -10,7 +8,8 @@ require 'pathname'
 # in the "integration" directory and named the same as their root_module_directory in the "fixtures" directory
 def get_state
   path = Pathname(caller_locations.first.absolute_path)
-  testname = Pathname(path.dirname).parent.basename
+  testname =  Pathname(path.dirname()).parent.basename
   state_file = "test/fixture/#{testname}/terraform.tfstate.d/kitchen-terraform-default-#{testname}/terraform.tfstate"
-  JSON.parse(File.read(state_file))
+  tfstate = JSON.parse(File.open(state_file).read)
+  return tfstate
 end

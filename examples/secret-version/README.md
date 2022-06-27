@@ -1,6 +1,5 @@
-# SNS Platform Application
-
-Basic quickstart for creating a SNS Platform Application resource.
+# Secret Version
+Basic quickstart for creating a Secret Version resource.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -14,7 +13,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_sns_platform_application"></a> [sns\_platform\_application](#module\_sns\_platform\_application) | so1omon563/sns/aws//modules/sns_platform_application | 0.1.0 |
+| <a name="module_secret"></a> [secret](#module\_secret) | so1omon563/secrets-manager/aws//modules/secret-version | 0.1.0 |
 
 ## Resources
 
