@@ -3,8 +3,8 @@
 include_controls 'inspec-aws'
 require './test/library/common'
 
-tfstate = get_state
-secret_id = tfstate['outputs']['secret']['value']['secret']['id'].to_s
+tfstate = StateFileReader.new
+secret_id = tfstate.read['outputs']['secret']['value']['secret']['id'].to_s
 
 control 'default' do
   describe aws_secretsmanager_secret(secret_id: secret_id) do
