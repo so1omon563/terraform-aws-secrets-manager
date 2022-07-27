@@ -74,7 +74,7 @@ This will create a new secret version that can be updated any time it detects a 
 
 When tearing down a secret, please note that it will remain in Secrets Manager for a minimum of 7 days, so the secret name cannot be re-used during that time.
 
-The secret name has a randomly generated hash at the end of it to help prevent this issue.
+By default, the secret name has a randomly generated hash at the end of it to help prevent this issue. That behavior can be overridden by using the `secret_name_override` variable.
 
 If you wish to force delete the secret, you will need to use the CLI.
 
@@ -96,7 +96,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.20.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.23.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.3.2 |
 
 ## Modules
@@ -126,6 +126,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | <a name="input_secret_binary"></a> [secret\_binary](#input\_secret\_binary) | Specifies binary data that you want to encrypt and store in this version of the secret. Needs to be encoded to base64. Cannot be used in conjunction with `secret_string` or `secret_key_value_pair`. | `string` | `null` | no |
 | <a name="input_secret_key_value_pair"></a> [secret\_key\_value\_pair](#input\_secret\_key\_value\_pair) | Specifies a key-value pair in a map of strings that you want to encrypt and store in this version of the secret. Cannot be used in conjunction with `secret_string` or `secret_binary`.<br><br>  Secrets Manager supports storing key-value pairs as secrets. We can pass those in as a map of strings, and it will be automatically converted to the JSON that is needed on the back end.<br><br>  An example of a key-value pair being passed in is here:<pre>secret_key_value_pair = {<br>    test1 = "secret1"<br>    test2 = "secret2"<br>  }</pre> | `map(string)` | `null` | no |
 | <a name="input_secret_name"></a> [secret\_name](#input\_secret\_name) | Will be appended to the `name` variable to create the name of the secret. If not provided, the secret will be named with only the `name` variable. | `string` | `null` | no |
+| <a name="input_secret_name_override"></a> [secret\_name\_override](#input\_secret\_name\_override) | Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if importing a secret that doesn't follow the standard naming formats. | `string` | `null` | no |
 | <a name="input_secret_string"></a> [secret\_string](#input\_secret\_string) | Specifies text data that you want to encrypt and store in this version of the secret. Cannot be used in conjunction with `secret_key_value_pair` or `secret_binary`. | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tag names and values for tags to apply to all taggable resources created by the module. Default value is a blank map to allow for using Default Tags in the provider. | `map(string)` | `{}` | no |
 | <a name="input_version_stages"></a> [version\_stages](#input\_version\_stages) | Specifies a list of staging labels that are attached to this version of the secret. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value, then AWS Secrets Manager automatically moves the staging label `AWSCURRENT` to this new version on creation. | `set(string)` | `null` | no |
