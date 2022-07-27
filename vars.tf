@@ -14,6 +14,15 @@ variable "secret_name" {
   default = null
 }
 
+variable "secret_name_override" {
+  type        = string
+  description = "Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if importing a secret that doesn't follow the standard naming formats."
+  # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
+  # The default can be overridden by passing in a new value.
+  # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
+  default = null
+}
+
 variable "description" {
   description = "Description of the secret. If not provided, a default value based on `name` and `secret_name` values will be used."
   type        = string
