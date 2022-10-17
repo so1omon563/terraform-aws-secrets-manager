@@ -9,7 +9,7 @@ provider "aws" {
 
 module "secret" {
   source  = "so1omon563/secrets-manager/aws"
-  version = "0.1.0" # Replace with appropriate version
+  version = "1.2.0" # Replace with appropriate version
 
   name = "example-secret"
   #tfsec:ignore:GEN003 The variable is marked as "sensitive" in the module, so it won't be output. Will still be in state file, which should be encrypted / access limited if stored in S3.
