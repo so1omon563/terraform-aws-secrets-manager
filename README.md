@@ -87,8 +87,6 @@ If you wish to force delete the secret, you will need to use the CLI.
 
 `aws secretsmanager delete-secret --secret-id <secret-name> --force-delete-without-recovery`
 
-Examples for use can be found under the [examples](https://github.com/so1omon563/terraform-aws-secrets-manager/tree/main/examples) directory.
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
