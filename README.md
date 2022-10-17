@@ -9,13 +9,13 @@ The [Rotate Secrets section in the Secrets Manager User Guide](https://docs.aws.
 
 ### Populating the secret
 
-This module is designed to create a one-off secret by passing in a variable at run-time. **DO NOT** place your seecrets in source control.
+This module is designed to create a one-off secret by passing in a variable at run-time. **DO NOT** place your secrets in source control.
 
 There are three input variables associated with passing in a secret - `secret_string`, `secret_binary`, or `secret_key_value_pair` as outlined in the `Input Variables` section below.
 
 If none of these options are passed in, the secret will be created, but will not contain a secret value.
 
-If desired, the secret value can also be independently maintained using the [secret_version](modules/secret_version) submodule.
+If desired, the secret value can also be independently maintained using the `secret_version` submodule in the `modules` directory.
 
 There are multiple options for passing in the secret value.
 
@@ -28,9 +28,12 @@ Use a `terraform.tfvars` file that contains the value of `secret_string`, `secre
 Make sure that you have `terraform.tfvars` in your `.gitignore` so it doesn't accidentally get committed.
 
 An example of the format for that is here:
-```
+
+```hcl
+
 # terraform.tfvars
-# Only one of these values can be passed in. They are not compatible with each other.
+
+# Only one of these values can be passed in. They are not compatible with each other
 
 secret_string = "string_value"
 secret_binary = "YmluYXJ5X3ZhbHVl"
@@ -38,6 +41,7 @@ secret_key_value_pair = {
     test1 = "secret1"
     test2 = "secret2"
   }
+
 ```
 
 #### Pass in input variable on command line
@@ -46,8 +50,10 @@ Pass in the value of `secret_string`, `secret_binary`, or `secret_key_value_pair
 
 An example of `secret_string` is here:
 
-```
+```shell
+
 terraform apply -var="secret_string=string_value"
+
 ```
 
 Depending on how you are calling the module, this option may not always work as expected.
@@ -58,9 +64,11 @@ You can also set your input variable as an environment variable in your shell pr
 
 An example of `secret_string` is here:
 
-```
-$ export TF_VAR_secret_string=string_value
-$ terraform apply
+```shell
+
+export TF_VAR_secret_string=string_value
+terraform apply
+
 ```
 
 ### Ignoring changes
@@ -68,7 +76,6 @@ $ terraform apply
 By default, this module will ignore changes to a secret value after it is first created. If you wish to update the secret version with a new value, you can set the `ignore_changes` variable to `true`.
 
 This will create a new secret version that can be updated any time it detects a change in the secret value.
-
 
 ### Tearing down a secret
 
@@ -83,7 +90,13 @@ If you wish to force delete the secret, you will need to use the CLI.
 Examples for use can be found under the [examples](https://github.com/so1omon563/terraform-aws-secrets-manager/tree/main/examples) directory.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+## Examples
+
+```hcl
+# See examples under the top level examples directory for more information on how to use this module.
+```
 
 ## Requirements
 
@@ -96,8 +109,8 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.23.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.3.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
 
 ## Modules
 
@@ -137,4 +150,6 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 |------|-------------|
 | <a name="output_secret"></a> [secret](#output\_secret) | Collection of outputs for the secret. |
 | <a name="output_secret_version"></a> [secret\_version](#output\_secret\_version) | Collection of outputs for the secret version. |
+
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

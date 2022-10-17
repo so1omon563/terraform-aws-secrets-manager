@@ -1,12 +1,10 @@
-**This README is manually maintained, and may not be up to date. For automated technical documentation, please refer to [`TF-DOCS.md`](TF-DOCS.md).**
-
 # Secret Version
 
 Creates a secret version in an existing secret in Secrets Manager. Note that the top level `secrets-manager` module calls this submodule to populate secrets.
 
-### Populating the secret
+## Populating the secret
 
-This module is designed to create a one-off secret by passing in a variable at run-time. **DO NOT** place your seecrets in source control.
+This module is designed to create a one-off secret by passing in a variable at run-time. **DO NOT** place your secrets in source control.
 
 There are three input variables associated with passing in a secret - `secret_string`, `secret_binary`, or `secret_key_value_pair` as outlined in the `Input Variables` section below.
 
@@ -16,14 +14,16 @@ There are multiple options for passing in the secret value.
 
 The most common options include:
 
-#### Use a .tfvars file
+### Use a .tfvars file
 
 Use a `terraform.tfvars` file that contains the value of `secret_string`, `secret_binary`, or `secret_key_value_pair`.
 
 Make sure that you have `terraform.tfvars` in your `.gitignore` so it doesn't accidentally get committed.
 
 An example of the format for that is here:
-```
+
+```hcl
+
 # terraform.tfvars
 # Only one of these values can be passed in. They are not compatible with each other.
 
@@ -33,6 +33,7 @@ secret_key_value_pair = {
     test1 = "secret1"
     test2 = "secret2"
   }
+
 ```
 
 #### Pass in input variable on command line
@@ -41,8 +42,10 @@ Pass in the value of `secret_string`, `secret_binary`, or `secret_key_value_pair
 
 An example of `secret_string` is here:
 
-```
+```shell
+
 terraform apply -var="secret_string=string_value"
+
 ```
 
 Depending on how you are calling the module, this option may not always work as expected.
@@ -53,9 +56,11 @@ You can also set your input variable as an environment variable in your shell pr
 
 An example of `secret_string` is here:
 
-```
-$ export TF_VAR_secret_string=string_value
-$ terraform apply
+```shell
+
+export TF_VAR_secret_string=string_value
+terraform apply
+
 ```
 
 ### Ignoring changes
@@ -67,6 +72,14 @@ This will create a new secret version that can be updated any time it detects a 
 Examples for use can be found under the [examples](https://github.com/so1omon563/terraform-aws-secrets-manager/tree/main/examples) directory.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+## Examples
+
+```hcl
+# See examples under the top level examples directory for more information on how to use this module.
+```
+
 ## Requirements
 
 | Name | Version |
@@ -78,7 +91,7 @@ Examples for use can be found under the [examples](https://github.com/so1omon563
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.20.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
 
 ## Modules
 
@@ -107,4 +120,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_secret_version"></a> [secret\_version](#output\_secret\_version) | Collection of outputs for the secret version. |
+
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
