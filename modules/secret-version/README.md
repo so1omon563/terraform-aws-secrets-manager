@@ -69,8 +69,6 @@ By default, this module will ignore changes to a secret value after it is first 
 
 This will create a new secret version that can be updated any time it detects a change in the secret value.
 
-Examples for use can be found under the [examples](https://github.com/so1omon563/terraform-aws-secrets-manager/tree/main/examples) directory.
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
