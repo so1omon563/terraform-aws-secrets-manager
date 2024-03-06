@@ -2,7 +2,8 @@
 
 variable "name" {
   type        = string
-  description = "Short, descriptive name of the environment. All resources will be named using this value as a prefix."
+  description = "Short, descriptive name of the environment. All resources will be named using this value as a prefix. If this, or `var.secret_name_override` are not provided, the secret will be named 'secret', with a random hex string appended."
+  default     = null
 }
 
 variable "secret_name" {
@@ -16,7 +17,7 @@ variable "secret_name" {
 
 variable "secret_name_override" {
   type        = string
-  description = "Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if importing a secret that doesn't follow the standard naming formats."
+  description = "Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if you have a specific naming pattern that falls outside of the defaults this module uses, or if importing a secret that doesn't follow the standard naming formats."
   # By setting a default value, we make it easier to consume the module without having to decide on specifics ahead of time.
   # The default can be overridden by passing in a new value.
   # By setting this default to `null`, we can easily determine if it needs to be used or not in `aws_secret.tf`
