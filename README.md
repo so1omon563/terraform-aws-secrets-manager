@@ -100,6 +100,7 @@ If you wish to force delete the secret, you will need to use the CLI.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+
 ## Examples
 
 ```hcl
@@ -158,6 +159,5 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 |------|-------------|
 | <a name="output_secret"></a> [secret](#output\_secret) | Collection of outputs for the secret. |
 | <a name="output_secret_version"></a> [secret\_version](#output\_secret\_version) | Collection of outputs for the secret version. |
-
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
