@@ -7,6 +7,16 @@ Please note that this module does **NOT** provide functionality to automatically
 For more information on secret rotation, please see [Rotation Configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#rotation-configuration).
 The [Rotate Secrets section in the Secrets Manager User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets_strategies.html) provides additional information about deploying a prebuilt Lambda functions for supported credential rotation (e.g., RDS) or deploying a custom Lambda function.
 
+## Secret Naming
+
+This module provides several methods for naming your secrets.
+
+The default method is to use a combination of the `name` and `secret_name` variables. This will create a secret named `<var.name>-<var.secret_name>-<randomly_generated_hex>` The random hex is appended to all secrets by default to allow for deleting / recreating secrets without having to force delete them from the command line.
+
+If you have a need for exact names, you should use the `secret_name_override` variable instead. This will name the secret exactly what you define.
+
+If you do not provide ANY naming values, then your secret will be given a default name of `secret-<randomly_generated_hex>`.
+
 ### Populating the secret
 
 This module is designed to create a one-off secret by passing in a variable at run-time. **DO NOT** place your secrets in source control.
@@ -90,6 +100,7 @@ If you wish to force delete the secret, you will need to use the CLI.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
+
 ## Examples
 
 ```hcl
@@ -107,8 +118,8 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.3 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.39.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 
 ## Modules
 
@@ -131,13 +142,13 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | <a name="input_description"></a> [description](#input\_description) | Description of the secret. If not provided, a default value based on `name` and `secret_name` values will be used. | `string` | `null` | no |
 | <a name="input_ignore_changes"></a> [ignore\_changes](#input\_ignore\_changes) | To ignore changes to the secret or not. This allows for changing the secret version after initial creation if desired. | `bool` | `true` | no |
 | <a name="input_kms_arn"></a> [kms\_arn](#input\_kms\_arn) | ARN of the KMS key to encrypt the secret with. | `string` | `null` | no |
-| <a name="input_name"></a> [name](#input\_name) | Short, descriptive name of the environment. All resources will be named using this value as a prefix. | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | Short, descriptive name of the environment. All resources will be named using this value as a prefix. If this, or `var.secret_name_override` are not provided, the secret will be named 'secret', with a random hex string appended. | `string` | `null` | no |
 | <a name="input_policy"></a> [policy](#input\_policy) | Optional JSON resource policy to attach to the secret. Suggest using Terraform to generate this policy using the `aws_iam_policy_document` resource. | `string` | `null` | no |
 | <a name="input_recovery_window_in_days"></a> [recovery\_window\_in\_days](#input\_recovery\_window\_in\_days) | Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. | `string` | `30` | no |
 | <a name="input_secret_binary"></a> [secret\_binary](#input\_secret\_binary) | Specifies binary data that you want to encrypt and store in this version of the secret. Needs to be encoded to base64. Cannot be used in conjunction with `secret_string` or `secret_key_value_pair`. | `string` | `null` | no |
 | <a name="input_secret_key_value_pair"></a> [secret\_key\_value\_pair](#input\_secret\_key\_value\_pair) | Specifies a key-value pair in a map of strings that you want to encrypt and store in this version of the secret. Cannot be used in conjunction with `secret_string` or `secret_binary`.<br><br>  Secrets Manager supports storing key-value pairs as secrets. We can pass those in as a map of strings, and it will be automatically converted to the JSON that is needed on the back end.<br><br>  An example of a key-value pair being passed in is here:<pre>secret_key_value_pair = {<br>    test1 = "secret1"<br>    test2 = "secret2"<br>  }</pre> | `map(string)` | `null` | no |
 | <a name="input_secret_name"></a> [secret\_name](#input\_secret\_name) | Will be appended to the `name` variable to create the name of the secret. If not provided, the secret will be named with only the `name` variable. | `string` | `null` | no |
-| <a name="input_secret_name_override"></a> [secret\_name\_override](#input\_secret\_name\_override) | Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if importing a secret that doesn't follow the standard naming formats. | `string` | `null` | no |
+| <a name="input_secret_name_override"></a> [secret\_name\_override](#input\_secret\_name\_override) | Used if there is a need to specify a secret name outside of the standardized nomenclature. For example, if you have a specific naming pattern that falls outside of the defaults this module uses, or if importing a secret that doesn't follow the standard naming formats. | `string` | `null` | no |
 | <a name="input_secret_string"></a> [secret\_string](#input\_secret\_string) | Specifies text data that you want to encrypt and store in this version of the secret. Cannot be used in conjunction with `secret_key_value_pair` or `secret_binary`. | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tag names and values for tags to apply to all taggable resources created by the module. Default value is a blank map to allow for using Default Tags in the provider. | `map(string)` | `{}` | no |
 | <a name="input_version_stages"></a> [version\_stages](#input\_version\_stages) | Specifies a list of staging labels that are attached to this version of the secret. A staging label must be unique to a single version of the secret. If you specify a staging label that's already associated with a different version of the same secret then that staging label is automatically removed from the other version and attached to this version. If you do not specify a value, then AWS Secrets Manager automatically moves the staging label `AWSCURRENT` to this new version on creation. | `set(string)` | `null` | no |
@@ -148,6 +159,5 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 |------|-------------|
 | <a name="output_secret"></a> [secret](#output\_secret) | Collection of outputs for the secret. |
 | <a name="output_secret_version"></a> [secret\_version](#output\_secret\_version) | Collection of outputs for the secret version. |
-
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
