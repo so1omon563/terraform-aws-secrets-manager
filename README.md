@@ -139,6 +139,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_description"></a> [description](#input\_description) | Description of the secret. If not provided, a default value based on `name` and `secret_name` values will be used. | `string` | `null` | no |
+| <a name="input_force_overwrite_replica_secret"></a> [force\_overwrite\_replica\_secret](#input\_force\_overwrite\_replica\_secret) | Whether to force overwrite the replica secret if it already exists. If set to `false`, the secret will not be overwritten if it already exists. | `bool` | `true` | no |
 | <a name="input_ignore_changes"></a> [ignore\_changes](#input\_ignore\_changes) | To ignore changes to the secret or not. This allows for changing the secret version after initial creation if desired. | `bool` | `true` | no |
 | <a name="input_kms_arn"></a> [kms\_arn](#input\_kms\_arn) | ARN of the KMS key to encrypt the secret with. | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | Short, descriptive name of the environment. All resources will be named using this value as a prefix. If this, or `var.secret_name_override` are not provided, the secret will be named 'secret', with a random hex string appended. | `string` | `null` | no |

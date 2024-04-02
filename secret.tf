@@ -13,6 +13,7 @@ resource "aws_secretsmanager_secret" "secret" {
   recovery_window_in_days = var.recovery_window_in_days
   tags                    = local.tags
 
+  force_overwrite_replica_secret = var.force_overwrite_replica_secret
   dynamic "replica" {
     for_each = local.replica_map
     content {
