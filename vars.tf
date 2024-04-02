@@ -147,3 +147,9 @@ EOT
   type        = map(string)
   default     = null
 }
+
+variable "force_overwrite_replica_secret" {
+  description = "Whether to force overwrite the replica secret if it already exists. If set to `false`, the secret will not be overwritten if it already exists."
+  type        = bool
+  default     = true
+}
