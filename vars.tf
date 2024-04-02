@@ -130,3 +130,20 @@ variable "ignore_changes" {
   # The default can be overridden by passing in a new value.
   default = true
 }
+
+variable "replica_region_kms_map" {
+  description = <<EOT
+  A map of values that must consist of regions and corresponding KMS keys. The regions are the regions that the secret is being replicated to, and the KMS keys are the ARNs, Key IDs, or Aliases of the AWS KMS key within the regions the secret is being replicated to. If one is not specified, then Secrets Manager defaults to using the AWS account's default KMS key (`aws/secretsmanager`) in the region or creates one for use if non-existent.
+
+  An example of the map is here:
+
+```
+  replica_region__kms_map = {
+    us-east-1 = "kms_arn_value"
+    us-west-1 = null
+  }
+```
+EOT
+  type        = map(string)
+  default     = null
+}
