@@ -9,7 +9,7 @@ Basic quickstart for creating a Secret Version resource.
 ```hcl
 module "secret" {
   source    = "so1omon563/secrets-manager/aws//modules/secret-version"
-  version   = "1.3.0" # Replace with appropriate version
+  version   = "1.4.0" # Replace with appropriate version
   secret_id = "valid_secret_id"
 
   //  secret_string = See `Populating the secret`
@@ -30,7 +30,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_secret"></a> [secret](#module\_secret) | so1omon563/secrets-manager/aws//modules/secret-version | 1.3.0 |
+| <a name="module_secret"></a> [secret](#module\_secret) | so1omon563/secrets-manager/aws//modules/secret-version | 1.4.0 |
 
 ## Resources
 
