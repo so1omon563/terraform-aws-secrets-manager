@@ -12,4 +12,12 @@ resource "aws_secretsmanager_secret" "secret" {
   policy                  = var.policy
   recovery_window_in_days = var.recovery_window_in_days
   tags                    = local.tags
+
+  dynamic "replica" {
+    for_each = local.replica_map
+    content {
+      region     = replica.key
+      kms_key_id = replica.value
+    }
+  }
 }

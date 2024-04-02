@@ -100,7 +100,6 @@ If you wish to force delete the secret, you will need to use the CLI.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 Auto-generated technical documentation is created using [`terraform-docs`](https://terraform-docs.io/)
-
 ## Examples
 
 ```hcl
@@ -118,7 +117,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.39.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.43.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 
 ## Modules
@@ -145,6 +144,7 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 | <a name="input_name"></a> [name](#input\_name) | Short, descriptive name of the environment. All resources will be named using this value as a prefix. If this, or `var.secret_name_override` are not provided, the secret will be named 'secret', with a random hex string appended. | `string` | `null` | no |
 | <a name="input_policy"></a> [policy](#input\_policy) | Optional JSON resource policy to attach to the secret. Suggest using Terraform to generate this policy using the `aws_iam_policy_document` resource. | `string` | `null` | no |
 | <a name="input_recovery_window_in_days"></a> [recovery\_window\_in\_days](#input\_recovery\_window\_in\_days) | Specifies the number of days that AWS Secrets Manager waits before it can delete the secret. This value can be `0` to force deletion without recovery or range from `7` to `30` days. | `string` | `30` | no |
+| <a name="input_replica_region_kms_map"></a> [replica\_region\_kms\_map](#input\_replica\_region\_kms\_map) | A map of values that must consist of regions and corresponding KMS keys. The regions are the regions that the secret is being replicated to, and the KMS keys are the ARNs, Key IDs, or Aliases of the AWS KMS key within the regions the secret is being replicated to. If one is not specified, then Secrets Manager defaults to using the AWS account's default KMS key (`aws/secretsmanager`) in the region or creates one for use if non-existent.<br><br>  An example of the map is here:<pre>replica_region__kms_map = {<br>    us-east-1 = "kms_arn_value"<br>    us-west-1 = null<br>  }</pre> | `map(string)` | `null` | no |
 | <a name="input_secret_binary"></a> [secret\_binary](#input\_secret\_binary) | Specifies binary data that you want to encrypt and store in this version of the secret. Needs to be encoded to base64. Cannot be used in conjunction with `secret_string` or `secret_key_value_pair`. | `string` | `null` | no |
 | <a name="input_secret_key_value_pair"></a> [secret\_key\_value\_pair](#input\_secret\_key\_value\_pair) | Specifies a key-value pair in a map of strings that you want to encrypt and store in this version of the secret. Cannot be used in conjunction with `secret_string` or `secret_binary`.<br><br>  Secrets Manager supports storing key-value pairs as secrets. We can pass those in as a map of strings, and it will be automatically converted to the JSON that is needed on the back end.<br><br>  An example of a key-value pair being passed in is here:<pre>secret_key_value_pair = {<br>    test1 = "secret1"<br>    test2 = "secret2"<br>  }</pre> | `map(string)` | `null` | no |
 | <a name="input_secret_name"></a> [secret\_name](#input\_secret\_name) | Will be appended to the `name` variable to create the name of the secret. If not provided, the secret will be named with only the `name` variable. | `string` | `null` | no |
@@ -159,5 +159,6 @@ Auto-generated technical documentation is created using [`terraform-docs`](https
 |------|-------------|
 | <a name="output_secret"></a> [secret](#output\_secret) | Collection of outputs for the secret. |
 | <a name="output_secret_version"></a> [secret\_version](#output\_secret\_version) | Collection of outputs for the secret version. |
+
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

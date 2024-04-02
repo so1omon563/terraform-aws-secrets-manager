@@ -3,5 +3,6 @@
 locals {
   secret_name        = var.secret_name_override != null ? var.secret_name_override : var.name == null ? format("secret-%s", random_id.secret-random.hex) : var.secret_name == null ? format("%s-%s", var.name, random_id.secret-random.hex) : format("%s-%s-%s", var.name, var.secret_name, random_id.secret-random.hex)
   secret_description = var.description == null ? local.secret_name : var.description
+  replica_map        = var.replica_region_kms_map != null ? var.replica_region_kms_map : {}
   tags               = var.tags
 }
