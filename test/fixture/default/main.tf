@@ -1,10 +1,29 @@
-variable "name" {}
+terraform {
+  required_version = ">= 0.14"
 
-variable "tags" {}
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.38, < 6.0"
+    }
+  }
+}
 
-variable "secret_name" {}
+variable "name" {
+  type = string
+}
 
-variable "secret_string" {}
+variable "tags" {
+  type = map(string)
+}
+
+variable "secret_name" {
+  type = string
+}
+
+variable "secret_string" {
+  type = string
+}
 
 provider "aws" {
   default_tags {

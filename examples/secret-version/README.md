@@ -7,6 +7,10 @@ Basic quickstart for creating a Secret Version resource.
 ## Examples
 
 ```hcl
+terraform {
+  required_version = ">= 0.14"
+}
+
 module "secret" {
   source    = "so1omon563/secrets-manager/aws//modules/secret-version"
   version   = "1.4.0" # Replace with appropriate version
@@ -20,7 +24,9 @@ module "secret" {
 
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
 
 ## Providers
 
