@@ -1,3 +1,7 @@
+terraform {
+  required_version = ">= 0.14"
+}
+
 module "secret" {
   source    = "so1omon563/secrets-manager/aws//modules/secret-version"
   version   = "1.4.0" # Replace with appropriate version
