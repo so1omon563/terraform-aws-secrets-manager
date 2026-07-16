@@ -20,10 +20,11 @@ jobs:
         uses: so1omon563/custom-semver-bumper@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: none
+          default_bump: patch
 
       - name: Find previous release
         id: previous-release
+        # Module tags publish by default; GitHub Release metadata remains marker-gated.
         if: steps.version.outputs.should_release == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
