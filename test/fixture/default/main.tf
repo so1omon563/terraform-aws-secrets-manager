@@ -36,8 +36,8 @@ module "secret" {
 
   name = var.name
   #tfsec:ignore:GEN003 The variable is marked as "sensitive" in the module, so it won't be output. Will still be in state file, which should be encrypted / access limited if stored in S3.
-  secret_name   = "mysecret"
-  secret_string = "test secret"
+  secret_name   = var.secret_name
+  secret_string = var.secret_string
 }
 output "secret" { value = module.secret }
 
