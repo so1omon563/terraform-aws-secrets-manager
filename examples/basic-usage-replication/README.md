@@ -15,7 +15,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 3.38, < 6.0"
+      version = ">= 3.38"
     }
   }
 }
@@ -61,7 +61,7 @@ output "secret" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.38, < 6.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.38 |
 
 ## Providers
 
