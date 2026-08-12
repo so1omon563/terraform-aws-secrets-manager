@@ -6,7 +6,7 @@
 # We use the value of `local.ignore_count` to test against.
 output "secret_version" {
   value = {
-    arn            = local.ignore_count > 0 ? aws_secretsmanager_secret_version.version_ignore[0].secret_arn : aws_secretsmanager_secret_version.version_change[0].secret_arn
+    arn            = local.ignore_count > 0 ? aws_secretsmanager_secret_version.version_ignore[0].arn : aws_secretsmanager_secret_version.version_change[0].arn
     id             = local.ignore_count > 0 ? aws_secretsmanager_secret_version.version_ignore[0].id : aws_secretsmanager_secret_version.version_change[0].id
     secret_id      = local.ignore_count > 0 ? aws_secretsmanager_secret_version.version_ignore[0].secret_id : aws_secretsmanager_secret_version.version_change[0].secret_id
     version_id     = local.ignore_count > 0 ? aws_secretsmanager_secret_version.version_ignore[0].version_id : aws_secretsmanager_secret_version.version_change[0].version_id
